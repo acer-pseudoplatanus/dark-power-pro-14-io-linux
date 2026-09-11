@@ -91,14 +91,24 @@ class ScriptedClient:
             return _pkt(0, struct.pack("<B", 0))
         return None
 
-    def get_device_info(self) -> dict[str, int | bytes] | None:
-        return {"model_id": 0x1234, "revision": 1}
+    def get_device_info(self) -> dict[str, object] | None:
+        return {
+            "model_id": 0x1234,
+            "revision": 1,
+            "mcu_versions": [{"id": 0, "major": 1, "middle": 7, "minor": 0, "title": "1.7.0"}],
+        }
 
     def get_serial_number(self) -> str | None:
         return "SN-TEST-001"
 
+    def get_qlink_version(self) -> str | None:
+        return "1.0.22"
+
     def get_supported_features(self) -> bytes | None:
         return bytes([0xFF, 0x00])
+
+    def get_kv_entries(self) -> list[dict[str, int]] | None:
+        return [{"index": 1, "value_len": 8}]
 
 
 def _ns(**overrides: object) -> argparse.Namespace:

@@ -89,6 +89,7 @@ F_DF = 2
 F_DEVINFO = 3
 F_SENSORS = 48
 F_CONTROLS = 49
+F_KV = 52
 
 C_OPEN = 1
 C_CLOSE = 2
@@ -100,6 +101,14 @@ C_GETACTIVE = 6
 C_GETDEV = 1
 C_GETSERIAL = 2
 C_FACTORYRESET = 5
+
+#: KEY_VALUE_STORAGE commands (official bundle enum). Only the read-side
+#: commands are exposed; the firmware implements GetEntries/GetKey, while
+#: GetValue/Set*/Delete* are unimplemented (empirically verified 2026-09-11).
+KV_GET_ENTRIES = 1
+KV_GET_ENTRY = 2
+KV_GET_KEY = 3
+KV_GET_VALUE = 4
 
 S_GETINFO = 1
 S_GETSINFO = 2

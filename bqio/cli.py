@@ -19,7 +19,7 @@ from __future__ import annotations
 import argparse
 import sys
 import time
-from typing import Callable
+from typing import Callable, cast
 
 from .client import QLinkClient
 from .hid_device import find_hidraw
@@ -57,14 +57,22 @@ def cmd_info(args: argparse.Namespace) -> int:
         qc.open_session()
         info = qc.get_device_info()
         if info:
-            print(f"ModelId:    {int(info['model_id'])}")
-            print(f"Revision:   {int(info['revision'])}")
+            print(f"ModelId:    {int(cast('int', info['model_id']))}")
+            print(f"Revision:   {int(cast('int', info['revision']))}")
+            for mcu in cast("list[dict[str, int | str]]", info["mcu_versions"]):
+                print(f"MCU {mcu['id']}:     FW {mcu['title']}")
         serial = qc.get_serial_number()
         if serial:
             print(f"Serial:     {serial}")
+        qlink = qc.get_qlink_version()
+        if qlink:
+            print(f"QLink:      {qlink}")
         feats = qc.get_supported_features()
         if feats:
             print(f"Features:   {feats.hex()}")
+        kv = qc.get_kv_entries()
+        if kv is not None:
+            print(f"KV entries: {len(kv)} ({', '.join(str(e['index']) for e in kv)})")
     return 0
 
 

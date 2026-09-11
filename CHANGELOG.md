@@ -120,6 +120,22 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
+- **Static device-info metrics** harvested once at connect (read-only,
+  verified against the official QLink web bundle parsers):
+  `bqio_info_model_id` (35 = Dark Power Pro 14 IO),
+  `bqio_info_revision`, `bqio_info_mcu_fw_{major,middle,minor}`,
+  `bqio_info_qlink_{major,middle,minor}`, `bqio_info_kv_entries`.
+- `client.get_device_info()` now decodes MCU firmware versions per the
+  official `_buildDeviceInfo` layout (previous revision parse was wrong:
+  revision is 1 byte + MCU count, not a u16).
+- `client.get_qlink_version()` — QLink protocol version
+  (`major.middle.minor` per the official parser).
+- `client.get_kv_entries()` — enumerates KEY_VALUE_STORAGE entries
+  (four `alert_N` threshold slots on the DPS14 IO; values are not
+  retrievable — `GetValue` is unimplemented in firmware).
+- `bqio info` CLI now prints MCU firmware, QLink version and KV entry
+  count.
+- `protocol.F_KV` + `KV_GET_*` command constants (read-side only).
 - **HiRes hybrid sampler:** the exporter now consumes device-pushed
   `SensorValueChanged` notifications (request_id=0) in addition to the
   500 ms poll backbone. Push updates carry exact reception timestamps.

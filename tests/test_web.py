@@ -78,6 +78,7 @@ def _start_dashboard(port: int) -> None:
     col._ka_expired = 0
     col._reopens = 0
     col._usb_resets = 0
+    col._device_info = {}
 
     handler = type("_BoundHandler", (_Handler,), {"collector": col})
     from http.server import ThreadingHTTPServer
@@ -165,6 +166,7 @@ def test_serve_binds_and_serves(monkeypatch):
     col._ka_expired = 0
     col._reopens = 0
     col._usb_resets = 0
+    col._device_info = {}
 
     port = _free_port()
     t = th.Thread(target=wb.serve, args=(col, "127.0.0.1", port), daemon=True)

@@ -7,6 +7,8 @@ exercised without a physical PSU.
 
 from __future__ import annotations
 
+from typing import cast
+
 import pytest
 from conftest import FakeHidDevice
 
@@ -14,12 +16,15 @@ from bqio.client import QLinkClient
 from bqio.protocol import (
     C_CLOSE,
     C_GETDEV,
+    C_GETQLINK,
     C_GETSERIAL,
     C_GETSUPP,
     C_OPEN,
     F_DEVINFO,
+    F_KV,
     F_ROOT,
     F_SENSORS,
+    KV_GET_ENTRIES,
     S_GETINFO,
     ProtocolError,
     SessionError,
@@ -254,6 +259,69 @@ def test_get_device_info_parses_model_and_revision():
     assert info is not None
     assert info["model_id"] == 0x0023
     assert info["revision"] == 1
+
+
+def test_get_device_info_full_payload_with_mcu_versions():
+    # Real DPS14 IO payload captured 2026-09-11 (round 1):
+    # model=35, rev=1, n_mcus=1, MCU entry (minor=0, mid_hi=0, mid_lo=7, major=1)
+    fake = FakeHidDevice()
+    client = QLinkClient(device="/dev/null")
+    _install_fake(client, fake)
+    client._session = 7
+    payload = bytes.fromhex("2300010100000701")
+    fake.responses.append(build_packet(7, _next_rid(client), F_DEVINFO, C_GETDEV, data=payload))
+    info = client.get_device_info()
+    assert info is not None
+    assert info["model_id"] == 35
+    assert info["revision"] == 1
+    mcus = cast("list[dict[str, int | str]]", info["mcu_versions"])
+    assert len(mcus) == 1
+    assert mcus[0]["major"] == 1
+    assert mcus[0]["middle"] == 7
+    assert mcus[0]["minor"] == 0
+    assert mcus[0]["title"] == "1.7.0"
+
+
+def test_get_qlink_version_parses_official_layout():
+    # Real payload: 16 00 00 01 -> "1.0.22" per bundle parser
+    fake = FakeHidDevice()
+    client = QLinkClient(device="/dev/null")
+    _install_fake(client, fake)
+    client._session = 7
+    fake.responses.append(
+        build_packet(7, _next_rid(client), F_ROOT, C_GETQLINK, data=bytes.fromhex("16000001"))
+    )
+    assert client.get_qlink_version() == "1.0.22"
+
+
+def test_get_qlink_version_returns_none_when_unanswered():
+    fake = FakeHidDevice()
+    client = QLinkClient(device="/dev/null", rx_timeout=0.05, retries=1)
+    _install_fake(client, fake)
+    client._session = 7
+    assert client.get_qlink_version() is None
+
+
+def test_get_kv_entries_parses_entry_table():
+    # Real payload: 4 entries, indices 1..4, value_len 8 each
+    fake = FakeHidDevice()
+    client = QLinkClient(device="/dev/null")
+    _install_fake(client, fake)
+    client._session = 7
+    payload = bytes.fromhex("0401000800020008000300080004000800")
+    fake.responses.append(build_packet(7, _next_rid(client), F_KV, KV_GET_ENTRIES, data=payload))
+    entries = client.get_kv_entries()
+    assert entries is not None
+    assert [e["index"] for e in entries] == [1, 2, 3, 4]
+    assert all(e["value_len"] == 8 for e in entries)
+
+
+def test_get_kv_entries_returns_none_when_unanswered():
+    fake = FakeHidDevice()
+    client = QLinkClient(device="/dev/null", rx_timeout=0.05, retries=1)
+    _install_fake(client, fake)
+    client._session = 7
+    assert client.get_kv_entries() is None
 
 
 def test_get_device_info_returns_none_when_unanswered():

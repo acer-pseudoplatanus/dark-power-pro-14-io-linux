@@ -70,6 +70,7 @@ import os
 import socket
 import threading
 import time
+from typing import cast
 
 from . import __version__
 from .client import QLinkClient
@@ -144,6 +145,7 @@ class Collector(threading.Thread):
         self._controls: dict[int, int] = {}  # idx -> vtype
         self._eff_ewma: float | None = None
         self._qc: QLinkClient | None = None
+        self._device_info: dict[str, int] = {}  # static device metadata
         self._fails = 0
         self._lost_ka = 0  # consecutive "lost" KeepAlive pings (escalation)
         self._probe_cursor = 0  # round-robin cursor for the liveness probe
@@ -203,6 +205,27 @@ class Collector(threading.Thread):
                 info = qc.request(F_CONTROLS, CTL_GETCINFO, data=bytes([ci]))
                 if info and info["status"] == 0 and len(info["payload"]) >= 2:
                     self._controls[ci] = info["payload"][1]
+
+        # Static device metadata (one-time harvest; cheap, read-only).
+        di = qc.get_device_info()
+        if di:
+            self._device_info["model_id"] = int(cast("int", di["model_id"]))
+            self._device_info["revision"] = int(cast("int", di["revision"]))
+            mcus = cast("list[dict[str, int | str]]", di["mcu_versions"])
+            if mcus:
+                self._device_info["mcu_fw_major"] = int(mcus[0]["major"])
+                self._device_info["mcu_fw_middle"] = int(mcus[0]["middle"])
+                self._device_info["mcu_fw_minor"] = int(mcus[0]["minor"])
+        qlink = qc.get_qlink_version()
+        if qlink:
+            parts = qlink.split(".")
+            if len(parts) == 3:
+                self._device_info["qlink_major"] = int(parts[0])
+                self._device_info["qlink_middle"] = int(parts[1])
+                self._device_info["qlink_minor"] = int(parts[2])
+        kv = qc.get_kv_entries()
+        if kv is not None:
+            self._device_info["kv_entries"] = len(kv)
 
         log.info(
             "connected: session=%d sensors=%d controls=%d session_timeout=%.1fs",
@@ -530,6 +553,7 @@ class Collector(threading.Thread):
             ka_expired = self._ka_expired
             reopens = self._reopens
             usb_resets = self._usb_resets
+            device_info = dict(self._device_info)
 
         lines: list[str] = []
         for idx in sorted(SENSORS):
@@ -622,6 +646,27 @@ class Collector(threading.Thread):
         lines.append("# HELP bqio_usb_resets_total USB re-enumerations performed (escalation)")
         lines.append("# TYPE bqio_usb_resets_total counter")
         lines.append(f"bqio_usb_resets_total {usb_resets}")
+
+        # Static device metadata (harvested once at connect; absent until
+        # the first successful connection).
+        if device_info:
+            di_gauges = (
+                ("model_id", "Device model id (35 = Dark Power Pro 14 IO)"),
+                ("revision", "Device hardware revision"),
+                ("mcu_fw_major", "QLink MCU firmware major version"),
+                ("mcu_fw_middle", "QLink MCU firmware middle version"),
+                ("mcu_fw_minor", "QLink MCU firmware minor version"),
+                ("qlink_major", "QLink protocol version major"),
+                ("qlink_middle", "QLink protocol version middle"),
+                ("qlink_minor", "QLink protocol version minor"),
+                ("kv_entries", "KEY_VALUE_STORAGE entries present (alert thresholds)"),
+            )
+            for key, help_text in di_gauges:
+                if key in device_info:
+                    name = f"{METRIC_PREFIX}_info_{key}"
+                    lines.append(f"# HELP {name} {help_text}")
+                    lines.append(f"# TYPE {name} gauge")
+                    lines.append(f"{name} {device_info[key]!r}")
         return "\n".join(lines) + "\n"
 
 

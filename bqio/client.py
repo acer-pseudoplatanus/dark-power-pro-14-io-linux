@@ -20,6 +20,7 @@ Usage::
 from __future__ import annotations
 
 import logging
+import struct
 import time
 from collections.abc import Callable
 
@@ -27,13 +28,16 @@ from .hid_device import HidDevice, Transport, find_hidraw
 from .protocol import (
     C_CLOSE,
     C_GETDEV,
+    C_GETQLINK,
     C_GETSERIAL,
     C_GETSUPP,
     C_KEEPALIVE,
     C_OPEN,
     CLIENT_WEB,
     F_DEVINFO,
+    F_KV,
     F_ROOT,
+    KV_GET_ENTRIES,
     PID,
     PKT,
     VID,
@@ -358,15 +362,85 @@ class QLinkClient:
         printable = "".join(chr(b) for b in resp["payload"] if 32 <= b < 127)
         return printable.strip() or None
 
-    def get_device_info(self) -> dict[str, int | bytes] | None:
-        import struct
+    def get_device_info(
+        self,
+    ) -> dict[str, int | list[dict[str, int | str]] | bytes] | None:
+        """Parse the ``GetDeviceInfo`` payload per the official bundle parser.
 
+        Layout (verified against ``_buildDeviceInfo`` in the QLink web
+        bundle, 2026-09-11)::
+
+            [0:2]  ModelId   (u16 LE)
+            [2]    Revision  (u8)
+            [3]    n_mcus    (u8)
+            [4..]  n_mcus * 4-byte MCU version entries:
+                   major=data[r+3], middle=decimal concat of data[r+1],
+                   data[r+2], minor=data[r]
+
+        Returns ``{"model_id", "revision", "mcu_versions", "raw"}`` where
+        ``mcu_versions`` is a list of ``{"id", "major", "middle", "minor",
+        "title"}`` dicts.
+        """
         resp = self.request(F_DEVINFO, C_GETDEV)
         if not resp or len(resp["payload"]) < 4:
             return None
         p = resp["payload"]
+        model_id = struct.unpack("<H", p[0:2])[0]
+        revision = p[2]
+        n_mcus = p[3]
+        mcu_versions: list[dict[str, int | str]] = []
+        for i in range(n_mcus):
+            r = 4 + i * 4
+            if r + 4 > len(p):
+                break
+            major = p[r + 3]
+            middle = int(str(p[r + 1]) + str(p[r + 2]))
+            minor = p[r]
+            mcu_versions.append(
+                {
+                    "id": i,
+                    "major": major,
+                    "middle": middle,
+                    "minor": minor,
+                    "title": f"{major}.{middle}.{minor}",
+                }
+            )
         return {
-            "model_id": struct.unpack("<H", p[0:2])[0],
-            "revision": struct.unpack("<H", p[2:4])[0],
+            "model_id": model_id,
+            "revision": revision,
+            "mcu_versions": mcu_versions,
             "raw": p,
         }
+
+    def get_qlink_version(self) -> str | None:
+        """Return the QLink protocol version as ``major.middle.minor``.
+
+        Official bundle parser: ``${A[3]}.${A[2]}.${(A[1]<<8)+A[0]}``.
+        """
+        resp = self.request(F_ROOT, C_GETQLINK)
+        if not resp or len(resp["payload"]) < 4:
+            return None
+        p = resp["payload"]
+        return f"{p[3]}.{p[2]}.{(p[1] << 8) + p[0]}"
+
+    def get_kv_entries(self) -> list[dict[str, int]] | None:
+        """Enumerate KEY_VALUE_STORAGE entries (read-only).
+
+        Returns a list of ``{"index", "value_len"}`` dicts, or ``None`` if
+        the feature is unsupported / unanswered. The firmware exposes four
+        ``alert_N`` threshold entries on the DPS14 IO (values are not
+        retrievable — ``GetValue`` is unimplemented, verified 2026-09-11).
+        """
+        resp = self.request(F_KV, KV_GET_ENTRIES)
+        if not resp or resp["status"] != 0 or not resp["payload"]:
+            return None
+        p = resp["payload"]
+        count = p[0]
+        out: list[dict[str, int]] = []
+        for i in range(count):
+            base = 1 + i * 4
+            if base + 4 > len(p):
+                break
+            idx, vlen = struct.unpack_from("<HH", p, base)
+            out.append({"index": idx, "value_len": vlen})
+        return out

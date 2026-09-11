@@ -35,6 +35,7 @@ def _seeded_collector(**values) -> Collector:
     col._ka_expired = 0
     col._reopens = 0
     col._usb_resets = 0
+    col._device_info = {}
     return col
 
 
@@ -80,6 +81,37 @@ def test_render_reports_up_and_age():
     assert "bqio_up 1" in text
     assert "bqio_data_age_seconds" in text
     assert "bqio_cycle_duration_seconds 0.4" in text
+
+
+def test_render_device_info_metrics_when_harvested():
+    col = _seeded_collector()
+    col._device_info = {
+        "model_id": 35,
+        "revision": 1,
+        "mcu_fw_major": 1,
+        "mcu_fw_middle": 7,
+        "mcu_fw_minor": 0,
+        "qlink_major": 1,
+        "qlink_middle": 0,
+        "qlink_minor": 22,
+        "kv_entries": 4,
+    }
+    text = col.render()
+    assert "bqio_info_model_id 35" in text
+    assert "bqio_info_revision 1" in text
+    assert "bqio_info_mcu_fw_major 1" in text
+    assert "bqio_info_mcu_fw_middle 7" in text
+    assert "bqio_info_mcu_fw_minor 0" in text
+    assert "bqio_info_qlink_major 1" in text
+    assert "bqio_info_qlink_middle 0" in text
+    assert "bqio_info_qlink_minor 22" in text
+    assert "bqio_info_kv_entries 4" in text
+
+
+def test_render_no_device_info_metrics_before_connect():
+    col = _seeded_collector()
+    text = col.render()
+    assert "bqio_info_model_id" not in text
 
 
 def test_render_clamps_efficiency_at_100():
@@ -180,6 +212,20 @@ class FakeQC:
             return {"status": 0, "payload": bytes([0]), "raw": b""}
         return None
 
+    def get_device_info(self) -> dict[str, object] | None:
+        return {
+            "model_id": 35,
+            "revision": 1,
+            "mcu_versions": [{"id": 0, "major": 1, "middle": 7, "minor": 0, "title": "1.7.0"}],
+            "raw": bytes.fromhex("2300010100000701"),
+        }
+
+    def get_qlink_version(self) -> str | None:
+        return "1.0.22"
+
+    def get_kv_entries(self) -> list[dict[str, int]] | None:
+        return [{"index": i, "value_len": 8} for i in (1, 2, 3, 4)]
+
 
 def _sampler_collector() -> Collector:
     col = Collector.__new__(Collector)
@@ -206,6 +252,7 @@ def _sampler_collector() -> Collector:
     col._lost_ka = 0
     col._probe_next = 0.0
     col._refresh_next = 0.0
+    col._device_info = {}
     return col
 
 

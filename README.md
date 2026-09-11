@@ -194,6 +194,11 @@ The exporter listens on **:9415** and publishes **23 sensor metrics** under the 
 | `bqio_up` | 0/1 | gauge |
 | `bqio_data_age_seconds` | s | gauge |
 | `bqio_scrape_duration_seconds` | s | gauge |
+| `bqio_info_model_id` | — | gauge (static) |
+| `bqio_info_revision` | — | gauge (static) |
+| `bqio_info_mcu_fw_major` / `_middle` / `_minor` | — | gauge (static) |
+| `bqio_info_qlink_major` / `_middle` / `_minor` | — | gauge (static) |
+| `bqio_info_kv_entries` | — | gauge (static) |
 
 Design notes:
 
