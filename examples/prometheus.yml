@@ -1,0 +1,11 @@
+# Sample Prometheus scrape config for the bqio exporter
+# Point the target at the host running `python -m bqio exporter`.
+
+scrape_configs:
+  - job_name: "psu"
+    scrape_interval: 15s
+    static_configs:
+      - targets: ["psu.example.net:9415"]
+        labels:
+          instance: "homelab-psu"
+          model: "dark-power-pro-14-io"

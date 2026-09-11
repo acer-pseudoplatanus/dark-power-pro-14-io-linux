@@ -1,0 +1,855 @@
+{
+ "captured_at_utc": "2026-09-08T17:36:55Z",
+ "device": {
+  "vid": "0x373f"
+ },
+ "note": "Read-only QLink capture for codec regression tests. Ground truth for the sensor registry (vtype/exponent).",
+ "sensor_ground_truth": {
+  "0": {
+   "active": true,
+   "stype": 12,
+   "vtype": 6,
+   "exponent": 0,
+   "raw_value_at_capture": 13512
+  },
+  "1": {
+   "active": true,
+   "stype": 12,
+   "vtype": 6,
+   "exponent": 0,
+   "raw_value_at_capture": 22572
+  },
+  "2": {
+   "active": true,
+   "stype": 1,
+   "vtype": 2,
+   "exponent": 0,
+   "raw_value_at_capture": 0
+  },
+  "3": {
+   "active": true,
+   "stype": 2,
+   "vtype": 0,
+   "exponent": 0,
+   "raw_value_at_capture": 59
+  },
+  "4": {
+   "active": true,
+   "stype": 3,
+   "vtype": 0,
+   "exponent": 0,
+   "raw_value_at_capture": 0
+  },
+  "5": {
+   "active": true,
+   "stype": 4,
+   "vtype": 2,
+   "exponent": -1,
+   "raw_value_at_capture": 3459
+  },
+  "6": {
+   "active": true,
+   "stype": 7,
+   "vtype": 2,
+   "exponent": -2,
+   "raw_value_at_capture": 23000
+  },
+  "7": {
+   "active": true,
+   "stype": 8,
+   "vtype": 2,
+   "exponent": -2,
+   "raw_value_at_capture": 2
+  },
+  "8": {
+   "active": true,
+   "stype": 7,
+   "vtype": 2,
+   "exponent": -2,
+   "raw_value_at_capture": 330
+  },
+  "9": {
+   "active": true,
+   "stype": 8,
+   "vtype": 2,
+   "exponent": -2,
+   "raw_value_at_capture": 2
+  },
+  "10": {
+   "active": true,
+   "stype": 7,
+   "vtype": 2,
+   "exponent": -2,
+   "raw_value_at_capture": 505
+  },
+  "11": {
+   "active": true,
+   "stype": 8,
+   "vtype": 2,
+   "exponent": -2,
+   "raw_value_at_capture": 2356
+  },
+  "12": {
+   "active": true,
+   "stype": 7,
+   "vtype": 2,
+   "exponent": -2,
+   "raw_value_at_capture": 1199
+  },
+  "13": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "14": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "15": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "16": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "17": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "18": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "19": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "20": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "21": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  },
+  "22": {
+   "active": false,
+   "stype": null,
+   "vtype": null,
+   "exponent": null,
+   "raw_value_at_capture": null
+  }
+ },
+ "control_ground_truth": {
+  "0": {
+   "info_payload_hex": "02000001",
+   "value_at_capture": 0
+  },
+  "1": {
+   "info_payload_hex": "02000001",
+   "value_at_capture": 0
+  }
+ },
+ "frames": [
+  {
+   "file": "root_open_tx.bin",
+   "direction": "tx",
+   "sha256": "4a7fd9ddfac4e9236b601cdc8b4f0d60e26b4eded427b9030146540f55bd30eb",
+   "size": 64
+  },
+  {
+   "file": "root_open_rx.bin",
+   "direction": "rx",
+   "sha256": "ea441ff687551fde3a6e0b4f20816fcbd14826f03211ab3a8f3c2b2a220d9299",
+   "size": 64
+  },
+  {
+   "file": "sensors_getinfo_tx.bin",
+   "direction": "tx",
+   "sha256": "980d4f5ebd66cd70fb7bee1ee0bb9a7ed7992500e40fab91497e052ce8f42f03",
+   "size": 64
+  },
+  {
+   "file": "sensors_getinfo_rx.bin",
+   "direction": "rx",
+   "sha256": "3495e443cf0926b3890286f00a7a5b65f7cdc99ce5d98a8fb8cc3b942b991692",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_00_tx.bin",
+   "direction": "tx",
+   "sha256": "2927cb03f47bdbcb310bbf2869244b9252131d618699b988e811adc34d7931e7",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_00_rx.bin",
+   "direction": "rx",
+   "sha256": "6e0607332be81e6ad39572eb9f4d74f6f578318454ff1226587514166a2846ff",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_00_tx.bin",
+   "direction": "tx",
+   "sha256": "d3f3da193dac37d38d4898630756385e7347988bdae96eaf2f99c12ce9aebc69",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_00_rx.bin",
+   "direction": "rx",
+   "sha256": "6d2280e6293b43a49ba926547abd20adc8a93ff64bb8bda81ed96e8884e5e49a",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_01_tx.bin",
+   "direction": "tx",
+   "sha256": "8e78bafc7c22bcb233d21ffe12ce74f4fd9bf8b5ec683cca1b00c3019d974477",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_01_rx.bin",
+   "direction": "rx",
+   "sha256": "04c3bf7e9391b066ca095e8035ee70634b42caf3b1e1948afa311a42481cf98d",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_01_tx.bin",
+   "direction": "tx",
+   "sha256": "f388c5c259586eda191b6646d71c41275a54926c09ec762c998d0ef3aedcc716",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_01_rx.bin",
+   "direction": "rx",
+   "sha256": "97fd449129856fffde333cf19168f5a46bfdc235ecc1ea870f0cdbf29ec82112",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_02_tx.bin",
+   "direction": "tx",
+   "sha256": "dcbd5c35e69f544838545ea5b097e738f9a5f10db660a5e693e54a7c0bb1a2e9",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_02_rx.bin",
+   "direction": "rx",
+   "sha256": "09229f4db7efaeb8989058e3b9cbac576a45355156abfee997fc2cf7da0eebf7",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_02_tx.bin",
+   "direction": "tx",
+   "sha256": "9c123a352e67c75c05584b3ee345c7a45abd8fdb6f3b2fc4de3c62371bff9b3f",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_02_rx.bin",
+   "direction": "rx",
+   "sha256": "14e8faa935af76037bf0ceea615f2da40c02885750e671b80bffda5e3128818b",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_03_tx.bin",
+   "direction": "tx",
+   "sha256": "e5c9424494f3e41b97ff59d34326e0fea439746f8d52697a5295815764b9c05f",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_03_rx.bin",
+   "direction": "rx",
+   "sha256": "1fbd2a7fe265b4017cdab4ef79a83c70d9bd80dafac459d3a751ddd37339a2c6",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_03_tx.bin",
+   "direction": "tx",
+   "sha256": "99399bb24e69019c4b0bac048265a30e8887535719cb8df85100fa36697d0e3a",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_03_rx.bin",
+   "direction": "rx",
+   "sha256": "3bd77bbef507724ab8a15d51bb33020de4a71719f3f51250e7323fb50df840a4",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_04_tx.bin",
+   "direction": "tx",
+   "sha256": "4c97bbc457153f02b6c0ed7cbfd94646991dcd55bd5377ecc12533fb9aeb866f",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_04_rx.bin",
+   "direction": "rx",
+   "sha256": "043ee781440f968d1c8356b23cb8d5b913593d2bc723c92d3009f9cb2a24ab2e",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_04_tx.bin",
+   "direction": "tx",
+   "sha256": "1bf1537cabe7dea6584cd6d9d1f5be7db37aa7f66fc1dcb3b33824ba3d9b1509",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_04_rx.bin",
+   "direction": "rx",
+   "sha256": "f172efcc64b4829e088e687ad45f0def2de4677a5025fb163fef9ec4ab9b8e9d",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_05_tx.bin",
+   "direction": "tx",
+   "sha256": "de6ef321bd1c63100e56b98a28d3e26e226f8a50bfc587fd6cddca9f4a81506e",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_05_rx.bin",
+   "direction": "rx",
+   "sha256": "3334f7c07410fa24324ce0df70766c5e2145be0fbac58588ec50e8d3040165eb",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_05_tx.bin",
+   "direction": "tx",
+   "sha256": "b9fe0c96b6b517e51d95be3c0c4846baa314ec13f4af5676ee91334f9db0fc4d",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_05_rx.bin",
+   "direction": "rx",
+   "sha256": "74adc495e6cc248d4209709ef1dc3fffb652f4938a42b695d6e7c5d8ca3e36b3",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_06_tx.bin",
+   "direction": "tx",
+   "sha256": "c2d5fc793d8dd032aa269f7f7754c7e5892009d3964adaca1b67d057eb15b765",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_06_rx.bin",
+   "direction": "rx",
+   "sha256": "15560327aa23598ad676eda1ff5e41249929d59a7a5f9bdc40b148ee0632e2d5",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_06_tx.bin",
+   "direction": "tx",
+   "sha256": "77fd87eb72dcfde4d4f3c38fb6dc10b71197674ee9978c1ab613ce45a7722d89",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_06_rx.bin",
+   "direction": "rx",
+   "sha256": "642e7a05f08e187509ef2872f8ead9c7c43d81bec96d09d4c2482837104529e7",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_07_tx.bin",
+   "direction": "tx",
+   "sha256": "36e71a6d024b9a742b3a9145d80165d251876aa17d7ce3d19cb60ca8a570b5d2",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_07_rx.bin",
+   "direction": "rx",
+   "sha256": "02be679621d892683be0193c71f0ebd5c0209dbe4ef4561b8998c04899203418",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_07_tx.bin",
+   "direction": "tx",
+   "sha256": "c6fe84e8c7d173309931adc0da8d2c30e808dbf26bc0ddfb1e66c2cf8964ead6",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_07_rx.bin",
+   "direction": "rx",
+   "sha256": "ff972f61e175656be3f9220f7e9f1de35d97a1b230e03397f48bd538af287346",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_08_tx.bin",
+   "direction": "tx",
+   "sha256": "e2a7a737862f039cb92afc8ecffcb0bc15846f50fe2383aa872c9aaa90df8f94",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_08_rx.bin",
+   "direction": "rx",
+   "sha256": "f2239585b231c3b1f24d0b0dbde798ead3137b3f37e0f762600a8d917882a0d6",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_08_tx.bin",
+   "direction": "tx",
+   "sha256": "38c6f8c562a6e9da81813a4fa80ff6f0b07e10f3fd5987904eca1b63f6ff9fbc",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_08_rx.bin",
+   "direction": "rx",
+   "sha256": "3c3ae23a8264eef9dcdf40ddad953f2935771b07b41a72aad7d8d531aa861255",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_09_tx.bin",
+   "direction": "tx",
+   "sha256": "0e1b25fb2c7817f9a3ed7bc6a4df47843a3601c4ddc1a93f27fe3cb9b4f28f6c",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_09_rx.bin",
+   "direction": "rx",
+   "sha256": "5712212b43f9cd91bbce2b3d8c66f7c341b403e7dc2178b9444c4f03c438c190",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_09_tx.bin",
+   "direction": "tx",
+   "sha256": "4dbf793f33ec70752ec49f8574944fdc3e3207edbd22aabb6e2ff81bc05a6b85",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_09_rx.bin",
+   "direction": "rx",
+   "sha256": "4f9d2421b76561f9498ab67b748ba69c16c927e44b0c1c721c2da3fdaa832eea",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_10_tx.bin",
+   "direction": "tx",
+   "sha256": "cded6936196ccac8dc512170832c9b1c88b6a3feb472892905e015428eb7ce63",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_10_rx.bin",
+   "direction": "rx",
+   "sha256": "e4d72a133aa68aa5fc200111e3e48ce6287be24da1944c61305152985d082735",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_10_tx.bin",
+   "direction": "tx",
+   "sha256": "97747c8ee24cec8e8d11c04541467579941549166b7e88ced5c729023498898a",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_10_rx.bin",
+   "direction": "rx",
+   "sha256": "612deda21d9a18629ad60794a069884366545727c1ff33fe3219079b5f4e1dd0",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_11_tx.bin",
+   "direction": "tx",
+   "sha256": "dc6baebbe38a817cbbfd7d38ddc2c8ec7e22833baedbb023c45484ed74bf4a7a",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_11_rx.bin",
+   "direction": "rx",
+   "sha256": "24f1d9a3502f6f29fd1262133d0209e7c007868506d22a3c25760add88674128",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_11_tx.bin",
+   "direction": "tx",
+   "sha256": "57a4b5e0fc1b50fec033d08c6deafefa0e31524ba0e572c6b74b91c00ddb00de",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_11_rx.bin",
+   "direction": "rx",
+   "sha256": "972467228d540fa34e546dc01b00fd5f66a1178f520c9c409216e9c3b950c91a",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_12_tx.bin",
+   "direction": "tx",
+   "sha256": "fd243bacbdde6f3a0cb6f68dd621e096c1089975c95f1688f34ba7e136213171",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_12_rx.bin",
+   "direction": "rx",
+   "sha256": "1c28eebcfee3f7dd89adbdd3fa3df0db2ac0e97c946d41ca62007f0742780f8f",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_12_tx.bin",
+   "direction": "tx",
+   "sha256": "34f6b50340781a41bba76a9b2b6b377710e87d8daf37586465c3e2d7b738ee39",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_12_rx.bin",
+   "direction": "rx",
+   "sha256": "c933c4021af3e0618b55275eaf06df7fcbaaf61d408944783f22ceffe3bfa4c3",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_13_tx.bin",
+   "direction": "tx",
+   "sha256": "45ec6c43022bbe51a6834817291c8f632e259e4d84abf3671357c935e233ee9e",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_13_rx.bin",
+   "direction": "rx",
+   "sha256": "02699f7cfe60caefe88d5e05873a253ec9f55844b08238f73597ef21a6356f03",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_13_tx.bin",
+   "direction": "tx",
+   "sha256": "2ed563b36ba8fdcced3992a2decc0ce64280c768d7ef8c894e6c42336a7d39ed",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_13_rx.bin",
+   "direction": "rx",
+   "sha256": "b3e2e8f5861fd264b16dd38a11b324e8b3f43fc521ed03ffd419680d13fdb07c",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_14_tx.bin",
+   "direction": "tx",
+   "sha256": "1ef6ae5cd5ea35277ac5855be33a45af80e392f933ba71ed792a6e505af40ea6",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_14_rx.bin",
+   "direction": "rx",
+   "sha256": "657c1745119a739c13464d0cb32c3f49633d2c11f1ef38eb97540bab05907bb8",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_14_tx.bin",
+   "direction": "tx",
+   "sha256": "ae9233550320430b3c73b200086d8137c94cba35489600d2274b38676cf9bd7f",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_14_rx.bin",
+   "direction": "rx",
+   "sha256": "511386c2e592a05a9078b1fc6a7cf2b5fd6395530a25239ce0bd71299b26d4a6",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_15_tx.bin",
+   "direction": "tx",
+   "sha256": "fba605fae06370858ae918d2d8e36a3e6471558616c7850afc2d5149d638b751",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_15_rx.bin",
+   "direction": "rx",
+   "sha256": "80d8b727a3521dc84bd58e33a304513665cd24b32457b1e70242a1572ff9075d",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_15_tx.bin",
+   "direction": "tx",
+   "sha256": "89756cc84cab9dfb6802d9f6f2871b0a9f6992d32cec2d14b9497e5018bd3b30",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_15_rx.bin",
+   "direction": "rx",
+   "sha256": "519824052abbc49af25eb8157a8459735c910a862b4f31d6abba56095be1d601",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_16_tx.bin",
+   "direction": "tx",
+   "sha256": "d3e22b514424d07f64185424022b5d542cf5c7f8eb596ced35369ba68e3f3638",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_16_rx.bin",
+   "direction": "rx",
+   "sha256": "0cfd3735f95095d4f78702aaf2ed525a6a256342a6920149809a24ffeb96bf8f",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_16_tx.bin",
+   "direction": "tx",
+   "sha256": "706853ad732d2b4b880fb83c3bc554d71eecc582e5b79fee43cc180e21e9f247",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_16_rx.bin",
+   "direction": "rx",
+   "sha256": "90296faf369d32ff0b4444462f4cf4908fa87b1d264105604debd5ef7d9b6165",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_17_tx.bin",
+   "direction": "tx",
+   "sha256": "2ebaaa6b75439c78ce15fd81dcc7522a6e9af8724b325da442bec632e265e850",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_17_rx.bin",
+   "direction": "rx",
+   "sha256": "dee5294d863347de1edc74791407c022a8b2e834f90a62db0de45100a1330e0b",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_17_tx.bin",
+   "direction": "tx",
+   "sha256": "26c6d35f4421831d3f09faeffae1b1362eaa58ef54edb735b6f2c50b02eee8e4",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_17_rx.bin",
+   "direction": "rx",
+   "sha256": "313ac69e30e93577b2bc1d05f3b8bb8c1010e8abad5bbf2b7c5d0391517d8485",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_18_tx.bin",
+   "direction": "tx",
+   "sha256": "52847a167b73a742a5575ccf8467e881bd6d9d69ab043c30af2d02b7a46bfed4",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_18_rx.bin",
+   "direction": "rx",
+   "sha256": "a6ee23cbc5273d42b02cb1421db8a2a96b05906a6d83e465210c8098b701cbaf",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_18_tx.bin",
+   "direction": "tx",
+   "sha256": "a536db6f26292b70f877e07423527744a1745f8681b4a855205b336dd9e55e22",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_18_rx.bin",
+   "direction": "rx",
+   "sha256": "5335be2ae08a5e04fcfa1297df8551db8b63814bb939e9be437da5e93abcb051",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_19_tx.bin",
+   "direction": "tx",
+   "sha256": "4a5fb98a763ee9550d1ac95fbfd8caf1b527a25ffc2897fdba4ab0ef573d8bd3",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_19_rx.bin",
+   "direction": "rx",
+   "sha256": "62b6d222c5aa7a89e2ed91b24dd366a96b4d8257272c6f7c55ffbbb8bb732d6b",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_19_tx.bin",
+   "direction": "tx",
+   "sha256": "24fd6a7a425463c3018bb152630eeeb3f78f49ef2ffe12536371d302e112506c",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_19_rx.bin",
+   "direction": "rx",
+   "sha256": "3c03dd7e6edd0bfc92110bb84d03f64ba598f45544af19082fea10251cd33195",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_20_tx.bin",
+   "direction": "tx",
+   "sha256": "3bf9aefd00ad1e5b8f1f07e4b68a0ea0695a6a3ce3fa3dc6bc3215886b89fa1f",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_20_rx.bin",
+   "direction": "rx",
+   "sha256": "33b1c8f888213555b0406ec56254a686c748a5294f634149c0144a4b8bb0d542",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_20_tx.bin",
+   "direction": "tx",
+   "sha256": "5e9d473321d172b605badd1ddf2c7bd8f620e939d3163126f7e045c8f3722096",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_20_rx.bin",
+   "direction": "rx",
+   "sha256": "0a6d2eeb206d9c5dc5c14dd395b2ed8bee302f8227af0d3864f10bec7ff675b4",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_21_tx.bin",
+   "direction": "tx",
+   "sha256": "f986a07d1edfb5a2e250c2ccf8cf634f15bbc1bd0c852f1c0dbf9f6419b325cc",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_21_rx.bin",
+   "direction": "rx",
+   "sha256": "264585a18603e439c3e978ef964348ac29c611978186cb4d39a4e6b72fcac6e3",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_21_tx.bin",
+   "direction": "tx",
+   "sha256": "40397de8166a5195a57e1ecfa4e62eb69b5134106a7da5edb13accf2d9631b53",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_21_rx.bin",
+   "direction": "rx",
+   "sha256": "4855d15516ae334bc8efd0671cc0c0116a0c4490dd33f7d3c6e1ea1293d4d829",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_22_tx.bin",
+   "direction": "tx",
+   "sha256": "500fb9b9d24e663df09415492c7fc2d8d479964c2b4037e989534e15de1af092",
+   "size": 64
+  },
+  {
+   "file": "sensors_getsinfo_22_rx.bin",
+   "direction": "rx",
+   "sha256": "a27d9c56437d346f0e6ccd2cb3cc6d0de67f5f06a11847b421fcf7d0e8518587",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_22_tx.bin",
+   "direction": "tx",
+   "sha256": "5a88462989072fb8adc687c266c8ae8a83bf63ade0e4b16a19c29e7235298064",
+   "size": 64
+  },
+  {
+   "file": "sensors_getval_22_rx.bin",
+   "direction": "rx",
+   "sha256": "ac95fdac62a620f43da291fa8181ffd5bd65344820ec291e6419d8dcc9344d81",
+   "size": 64
+  },
+  {
+   "file": "controls_getinfo_tx.bin",
+   "direction": "tx",
+   "sha256": "ed3ce4d5ab77abed4915421d3b6c92e5435dfeabaee8d63bd7f7a9026c75131d",
+   "size": 64
+  },
+  {
+   "file": "controls_getinfo_rx.bin",
+   "direction": "rx",
+   "sha256": "b91916904e5ad598e5d31bb8bba31f6fd4da5e4e297d0559d1f9a50c629bd575",
+   "size": 64
+  },
+  {
+   "file": "controls_getcinfo_00_tx.bin",
+   "direction": "tx",
+   "sha256": "b71ad6d46d4276cea09b80b747b5907e34457014e636af8f80f28894f5e07367",
+   "size": 64
+  },
+  {
+   "file": "controls_getcinfo_00_rx.bin",
+   "direction": "rx",
+   "sha256": "b8912fbb706909058e2bde8f924bc9b36caf30e36748687dc89757b0478a2de2",
+   "size": 64
+  },
+  {
+   "file": "controls_getval_00_tx.bin",
+   "direction": "tx",
+   "sha256": "d461bd09046a5f5e46ae59f3115aeb8b5bb75832750ee34bf802857e0e0e975e",
+   "size": 64
+  },
+  {
+   "file": "controls_getval_00_rx.bin",
+   "direction": "rx",
+   "sha256": "d461bd09046a5f5e46ae59f3115aeb8b5bb75832750ee34bf802857e0e0e975e",
+   "size": 64
+  },
+  {
+   "file": "controls_getcinfo_01_tx.bin",
+   "direction": "tx",
+   "sha256": "f927a39b608ec385aa4a4269abd78a3a76df6ea9b7f68dabea8784e3775f64bf",
+   "size": 64
+  },
+  {
+   "file": "controls_getcinfo_01_rx.bin",
+   "direction": "rx",
+   "sha256": "cb68c98c0d0848ad33eb90fdf2514e8416588464e2556a0eaaccb747e322f1dc",
+   "size": 64
+  },
+  {
+   "file": "controls_getval_01_tx.bin",
+   "direction": "tx",
+   "sha256": "4cdbed92381e0b14b2668c7e6e70f82dc27d8fa2e0781758a3aa90ccce57ffe6",
+   "size": 64
+  },
+  {
+   "file": "controls_getval_01_rx.bin",
+   "direction": "rx",
+   "sha256": "202ae8781f26a0e3cc73eab486deb02fd1dc0f6ed464fcaa8335aa204ece9223",
+   "size": 64
+  },
+  {
+   "file": "devinfo_getdev_tx.bin",
+   "direction": "tx",
+   "sha256": "94bd9b298f406c144483f5f033821d52db71f7f8d2822506ac7a5f6c5f6d644a",
+   "size": 64
+  },
+  {
+   "file": "devinfo_getdev_rx.bin",
+   "direction": "rx",
+   "sha256": "95fe156933523052c21a881de0a420d848c3c2475a00dcca5d4aa8246d26abd0",
+   "size": 64
+  },
+  {
+   "file": "devinfo_getserial_tx.bin",
+   "direction": "tx",
+   "sha256": "c7cf6ad742acfe0cd88c744d0d1b0e7bd07c3f4196db1eac6c53b7a797f88342",
+   "size": 64
+  },
+  {
+   "file": "devinfo_getserial_rx.bin",
+   "direction": "rx",
+   "sha256": "f3a045b8c2aff5ba07b2db94a002d8dba583e0a197375e798a0f73965a4ec665",
+   "size": 64,
+   "redacted": "serial number zeroed for privacy (real device SN removed)"
+  },
+  {
+   "file": "root_close_tx.bin",
+   "direction": "tx",
+   "sha256": "df4756e92267892168f890f494c9f4e5b40615e36af6613926ccd51a5ac9403c",
+   "size": 64
+  },
+  {
+   "file": "root_close_rx.bin",
+   "direction": "rx",
+   "sha256": "df4756e92267892168f890f494c9f4e5b40615e36af6613926ccd51a5ac9403c",
+   "size": 64
+  }
+ ]
+}

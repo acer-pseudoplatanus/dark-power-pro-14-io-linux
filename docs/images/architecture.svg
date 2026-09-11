@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" font-family="'Segoe UI',system-ui,-apple-system,sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#5b8def"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f1420"/><stop offset="1" stop-color="#161d2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="980" height="560" rx="14" fill="url(#bg)"/>
+  <text x="490" y="34" fill="#e8ecf4" font-size="20" font-weight="700" text-anchor="middle">bqio — QLink USB telemetry pipeline</text>
+  <text x="490" y="54" fill="#8b97ad" font-size="12" text-anchor="middle">thin, auditable, zero-runtime-dependency — every layer swappable &amp; testable in isolation</text>
+
+  <!-- PSU -->
+  <rect x="40" y="150" width="170" height="120" rx="10" fill="#1b2334" stroke="#3a4a6b" stroke-width="1.5"/>
+  <text x="125" y="185" fill="#ffd166" font-size="26" text-anchor="middle">⚡</text>
+  <text x="125" y="212" fill="#e8ecf4" font-size="14" font-weight="600" text-anchor="middle">be quiet!</text>
+  <text x="125" y="230" fill="#e8ecf4" font-size="13" font-weight="600" text-anchor="middle">Dark Power Pro 14 IO</text>
+  <text x="125" y="250" fill="#8b97ad" font-size="11" text-anchor="middle">QLink MCU · VID 0x373f</text>
+
+  <!-- bus arrow -->
+  <line x1="210" y1="210" x2="300" y2="210" stroke="#5b8def" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="255" y="196" fill="#8b97ad" font-size="11" text-anchor="middle">USB-HID</text>
+  <text x="255" y="230" fill="#8b97ad" font-size="11" text-anchor="middle">64-byte frames</text>
+
+  <!-- package box -->
+  <rect x="300" y="90" width="400" height="330" rx="12" fill="#141b2b" stroke="#3a4a6b" stroke-width="1.5"/>
+  <text x="500" y="116" fill="#e8ecf4" font-size="15" font-weight="700" text-anchor="middle">bqio (user space)</text>
+
+  <!-- layers -->
+  <rect x="330" y="135" width="340" height="52" rx="8" fill="#1b2334" stroke="#5b8def" stroke-width="1.2"/>
+  <text x="500" y="158" fill="#e8ecf4" font-size="13" font-weight="600" text-anchor="middle">hid_device</text>
+  <text x="500" y="176" fill="#8b97ad" font-size="11" text-anchor="middle">/dev/hidrawN I/O · VID/PID discovery</text>
+
+  <rect x="330" y="197" width="340" height="52" rx="8" fill="#1b2334" stroke="#5b8def" stroke-width="1.2"/>
+  <text x="500" y="220" fill="#e8ecf4" font-size="13" font-weight="600" text-anchor="middle">protocol</text>
+  <text x="500" y="238" fill="#8b97ad" font-size="11" text-anchor="middle">frame codec · CRC-16-CCITT · session</text>
+
+  <rect x="330" y="259" width="340" height="52" rx="8" fill="#1b2334" stroke="#5b8def" stroke-width="1.2"/>
+  <text x="500" y="282" fill="#e8ecf4" font-size="13" font-weight="600" text-anchor="middle">client</text>
+  <text x="500" y="300" fill="#8b97ad" font-size="11" text-anchor="middle">high-level API · typed decoding</text>
+
+  <rect x="330" y="321" width="340" height="52" rx="8" fill="#1b2334" stroke="#5b8def" stroke-width="1.2"/>
+  <text x="500" y="344" fill="#e8ecf4" font-size="13" font-weight="600" text-anchor="middle">registry</text>
+  <text x="500" y="362" fill="#8b97ad" font-size="11" text-anchor="middle">single source of truth · 13 sensors · 2 controls</text>
+
+  <!-- vertical connectors -->
+  <line x1="500" y1="187" x2="500" y2="197" stroke="#5b8def" stroke-width="2"/>
+  <line x1="500" y1="249" x2="500" y2="259" stroke="#5b8def" stroke-width="2"/>
+  <line x1="500" y1="311" x2="500" y2="321" stroke="#5b8def" stroke-width="2"/>
+
+  <!-- sinks -->
+  <rect x="740" y="150" width="200" height="64" rx="10" fill="#1b2334" stroke="#3a4a6b" stroke-width="1.5"/>
+  <text x="840" y="178" fill="#e8ecf4" font-size="14" font-weight="600" text-anchor="middle">🖥️ CLI</text>
+  <text x="840" y="198" fill="#8b97ad" font-size="11" text-anchor="middle">status · sensors · controls · watch</text>
+
+  <rect x="740" y="234" width="200" height="64" rx="10" fill="#1b2334" stroke="#3a4a6b" stroke-width="1.5"/>
+  <text x="840" y="262" fill="#e8ecf4" font-size="14" font-weight="600" text-anchor="middle">📈 Prometheus</text>
+  <text x="840" y="282" fill="#8b97ad" font-size="11" text-anchor="middle">:9415 · bqio_* metrics</text>
+
+  <rect x="740" y="318" width="200" height="64" rx="10" fill="#1b2334" stroke="#3a4a6b" stroke-width="1.5"/>
+  <text x="840" y="346" fill="#e8ecf4" font-size="14" font-weight="600" text-anchor="middle">🌐 Web Dashboard</text>
+  <text x="840" y="366" fill="#8b97ad" font-size="11" text-anchor="middle">stdlib server · real-time charts</text>
+
+  <!-- arrows to sinks -->
+  <line x1="670" y1="285" x2="740" y2="182" stroke="#5b8def" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="670" y1="285" x2="740" y2="266" stroke="#5b8def" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="670" y1="285" x2="740" y2="350" stroke="#5b8def" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- footer -->
+  <text x="490" y="470" fill="#8b97ad" font-size="12" text-anchor="middle">no kernel modules · no root (after udev rule) · pure Python stdlib + /dev/hidraw</text>
+  <text x="490" y="492" fill="#5f6b82" font-size="11" text-anchor="middle">zero runtime dependencies — the codec, exporter and web UI share one sensor registry</text>
+</svg>

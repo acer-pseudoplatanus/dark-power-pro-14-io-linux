@@ -1,0 +1,24 @@
+[Unit]
+Description=bqio — QLink USB telemetry exporter for be quiet! IO-series PSUs
+After=multi-user.target
+Wants=multi-user.target
+
+[Service]
+Type=simple
+# Run as a dedicated user; the udev rule grants access to the HID node.
+User=bqio
+Group=bqio
+ExecStart=/usr/bin/python3 -m bqio.exporter --port 9415
+Restart=always
+RestartSec=5
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/tmp
+# Allow the HID device node (udev rule sets owner/group to bqio:bqio)
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,104 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bqio"
+version = "1.2.1"
+description = "Linux CLI & Prometheus exporter for the be quiet! Dark Power Pro 14 IO PSU — reverse-engineered QLink USB-HID telemetry, zero dependencies"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "bqio contributors" }]
+keywords = [
+    "psu",
+    "power-supply",
+    "be-quiet",
+    "dark-power-pro-14-io",
+    "qlink",
+    "usb-hid",
+    "prometheus",
+    "telemetry",
+    "monitoring",
+    "homelab",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: System :: Monitoring",
+    "Typing :: Typed",
+]
+
+# Deliberately EMPTY: bqio is zero-runtime-dependency by design.
+# It reads the stock /dev/hidraw character device and renders the
+# Prometheus text exposition by hand — no hidapi, no prometheus_client.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "pytest-cov>=4",
+    "ruff>=0.4",
+    "mypy>=1.8,<2",  # mypy 2.x dropped --python-version 3.9 (our floor)
+    "coverage>=7",
+]
+
+[project.urls]
+Homepage = "https://github.com/acer-pseudoplatanus/bqio"
+Issues = "https://github.com/acer-pseudoplatanus/bqio/issues"
+
+[project.scripts]
+bqio = "bqio.cli:main"
+bqio-exporter = "bqio.exporter:main"
+bqio-web = "bqio.web:main"
+
+[tool.setuptools.packages.find]
+include = ["bqio*"]
+
+# --------------------------------------------------------------------------
+# Quality gates
+# --------------------------------------------------------------------------
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["bqio"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = [
+    "E", "W",    # pycodestyle
+    "F",         # pyflakes
+    "I",         # isort
+    "B",         # bugbear
+    "UP",        # pyupgrade
+    "SIM",       # simplify
+]
+ignore = ["E501"]  # handled by formatter
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+warn_unreachable = true
+pretty = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_defs = false

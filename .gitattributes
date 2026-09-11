@@ -1,0 +1,21 @@
+# Keep the sdist lean: exclude dev/CI assets from the source distribution.
+# (The wheel is unaffected — it only contains the installed package.)
+.github/           export-ignore
+.gitattributes     export-ignore
+.gitignore         export-ignore
+.mypy_cache/       export-ignore
+.pytest_cache/     export-ignore
+.ruff_cache/       export-ignore
+.venv/             export-ignore
+build/             export-ignore
+bqio.egg-info/     export-ignore
+tests/             export-ignore
+docs/              export-ignore
+examples/          export-ignore
+systemd/           export-ignore
+udev/              export-ignore
+Makefile           export-ignore
+CONTRIBUTING.md    export-ignore
+CODE_OF_CONDUCT.md export-ignore
+SECURITY.md        export-ignore
+DELIVERY_SPEC.md   export-ignore
